@@ -1,16 +1,12 @@
-export default async function SSRPage() {
-  const response = await fetch(
-    "https://jsonplaceholder.typicode.com/posts/1"
-  );
+export default function SSRPage() {
+  const secret = process.env.MY_SECRET;
 
-  const data = await response.json();
+  console.log("SERVER:", secret);
 
   return (
     <div>
       <h1>SSR Page</h1>
-      <h2>{data.title}</h2>
-
-      <p>{process.env.NODE_ENV}</p>
+      <p>{secret}</p>
     </div>
   );
 }
