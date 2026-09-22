@@ -44,9 +44,13 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
-const Analytics = dynamic(
-  () => import("./components/Analytics")
+const HeavyComponent = dynamic(
+  () => import("./components/Analytics"), 
+  {
+    loading: () => <p>Loading component...</p>
+  }
 );
 
 export default function Home() {
@@ -65,7 +69,34 @@ export default function Home() {
         Show Analytics
       </button>
 
-      {showAnalytics && <Analytics />}
+      {showAnalytics && <HeavyComponent />}
+
+      <h1 className="mt-4">Image Optimization</h1>
+      <Image src="/japan.png" width={400} height={300} alt="Japan street" className="rounded-2xl"/>
     </main>
   );
 }
+
+
+// import Image from "next/image";
+
+// export default function Home() {
+//   return (
+//     <main>
+//       <h1>Image Optimization</h1>
+
+//       <div className="h-[2000px]">
+//         <p>Lots of content...</p>
+//       </div>
+
+//       <Image
+//         src="/japan.png"
+//         width={800}
+//         height={600}
+//         alt="Japan "
+//         loading="lazy"
+//         // preload
+//       />
+//     </main>
+//   );
+// }
