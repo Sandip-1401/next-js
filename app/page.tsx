@@ -40,42 +40,42 @@
 //   );
 // }
 
-"use client";
+// "use client";
 
-import { useState } from "react";
-import dynamic from "next/dynamic";
-import Image from "next/image";
+// import { useState } from "react";
+// import dynamic from "next/dynamic";
+// import Image from "next/image";
 
-const HeavyComponent = dynamic(
-  () => import("./components/Analytics"), 
-  {
-    loading: () => <p>Loading component...</p>
-  }
-);
+// const HeavyComponent = dynamic(
+//   () => import("./components/Analytics"), 
+//   {
+//     loading: () => <p>Loading component...</p>
+//   }
+// );
 
-export default function Home() {
-  const [showAnalytics, setShowAnalytics] = useState(false);
+// export default function Home() {
+//   const [showAnalytics, setShowAnalytics] = useState(false);
 
-  return (
-    <main className="p-10">
-      <h1 className="text-4xl font-bold">
-        Home Page
-      </h1>
+//   return (
+//     <main className="p-10">
+//       <h1 className="text-4xl font-bold">
+//         Home Page
+//       </h1>
 
-      <button
-        onClick={() => setShowAnalytics(true)}
-        className="mt-6 rounded-lg bg-blue-600 px-5 py-2 text-white"
-      >
-        Show Analytics
-      </button>
+//       <button
+//         onClick={() => setShowAnalytics(true)}
+//         className="mt-6 rounded-lg bg-blue-600 px-5 py-2 text-white"
+//       >
+//         Show Analytics
+//       </button>
 
-      {showAnalytics && <HeavyComponent />}
+//       {showAnalytics && <HeavyComponent />}
 
-      <h1 className="mt-4">Image Optimization</h1>
-      <Image src="/japan.png" width={400} height={300} alt="Japan street" className="rounded-2xl"/>
-    </main>
-  );
-}
+//       <h1 className="mt-4">Image Optimization</h1>
+//       <Image src="/japan.png" width={400} height={300} alt="Japan street" className="rounded-2xl"/>
+//     </main>
+//   );
+// }
 
 
 // import Image from "next/image";
@@ -100,3 +100,20 @@ export default function Home() {
 //     </main>
 //   );
 // }
+
+export default function Home() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const secret = process.env.JWT_SECRET;
+
+  return (
+     <main>
+      <h1>Environment Variables</h1>
+
+      <p>API URL: {apiUrl}</p>
+
+      <p>
+        Secret exists: {secret ? "Yes" : "No"}
+      </p>
+    </main>
+  );
+}
