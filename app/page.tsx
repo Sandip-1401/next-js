@@ -101,19 +101,45 @@
 //   );
 // }
 
-export default function Home() {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const secret = process.env.JWT_SECRET;
+// export default function Home() {
+//   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+//   const secret = process.env.JWT_SECRET;
 
-  return (
-     <main>
-      <h1>Environment Variables</h1>
+//   return (
+//      <main>
+//       <h1>Environment Variables</h1>
 
-      <p>API URL: {apiUrl}</p>
+//       <p>API URL: {apiUrl}</p>
 
-      <p>
-        Secret exists: {secret ? "Yes" : "No"}
-      </p>
-    </main>
-  );
+//       <p>
+//         Secret exists: {secret ? "Yes" : "No"}
+//       </p>
+//     </main>
+//   );
+// }
+
+
+// import { draftMode } from "next/headers";
+
+// export default async function Home() {
+//   const { isEnabled } = await draftMode();
+
+//   return (
+//     <h1>
+//       Draft Mode is {isEnabled ? "Enabled" : "Disabled"}
+//     </h1>
+//   );
+// }
+
+
+import { draftMode } from "next/headers";
+
+export default async function Home() {
+  const { isEnabled } = await draftMode();
+
+  const title = isEnabled
+    ? "iPhone 18"
+    : "iPhone 17";
+
+  return <h1>{title}</h1>;
 }
